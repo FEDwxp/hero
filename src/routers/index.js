@@ -8,6 +8,9 @@ Vue.use(VueRouter);
 import HeroList from '../views/heroes/List.vue';
 import EquipsList from '../views/equips/List.vue';
 import WeaponsList from '../views/weapons/List.vue';
+import AddHero from '../views/heroes/addHero.vue';
+import EditHero from '../views/heroes/edithero.vue';
+import NotFound from '../views/notfount.vue';
 
 // 创建路由对象
 const router = new VueRouter({
@@ -24,6 +27,15 @@ const router = new VueRouter({
     }, {
         path: '/weapons',
         component: WeaponsList
+    }, {
+        path: '/heroes/add',
+        component: AddHero
+    }, {
+        path: '/heroes/edit',
+        component: EditHero
+    }, {
+        path: '*',
+        component: NotFound
     }]
 });
 

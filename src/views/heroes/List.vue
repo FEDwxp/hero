@@ -1,7 +1,8 @@
 <template>
     <div>
         <h2 class="sub-header">英雄列表</h2>
-        <a class="btn btn-success" href="add.html">Add</a>
+        <!-- <a class="btn btn-success" href="add.html">Add</a> -->
+        <router-link class="btn btn-success" to="/heroes/add">Add</router-link>
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
@@ -20,7 +21,8 @@
                 <td>{{item.name}}</td>
                 <td>{{item.gender}}</td>
                 <td>
-                  <a href="edit.html">edit</a>
+                  <!-- <a href="edit.html">edit</a> -->
+                  <router-link to="/heroes/edit">edit</router-link>
                   &nbsp;&nbsp;
                   <a href="javascript:" @click="handleDel(item.id)">delete</a>
                 </td>
