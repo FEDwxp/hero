@@ -13,11 +13,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1,001</td>
-                <td>Lorem</td>
-                <td>ipsum</td>
-                <td>dolor</td>
+              <tr
+              v-for="(item, index) in list"
+              :key="item.id">
+                <td>{{index+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.gender}}</td>
                 <td>
                   <a href="edit.html">edit</a>
                   &nbsp;&nbsp;
@@ -31,8 +32,32 @@
 </template>
 
 <script>
-export default {
+//引入axios包
+import axios from 'axios'
 
+export default {
+  data(){
+    return {
+      list: []
+    }
+  },
+  mounted() {
+    this.loadData();
+  },
+  methods: {
+    loadData () {
+      axios
+        .get('http://localhost:3000/heroes')
+        .then((response) => {
+          if (response.status === 200) {
+            this.list = response.data;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
 }
 </script>
 
