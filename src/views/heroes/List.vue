@@ -22,8 +22,11 @@
                 <td>
                   <a href="edit.html">edit</a>
                   &nbsp;&nbsp;
-                  <a href="javascript:window.confirm('Are you sure?')">delete</a>
+                  <a href="javascript:" @click="handleDel(item.id)">delete</a>
                 </td>
+              </tr>
+              <tr>
+                <td colspan="4" v-show="this.list.length == 0">暂无数据</td>
               </tr>
             </tbody>
           </table>
@@ -56,6 +59,22 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+    },
+    handleDel (id){
+      if(!confirm('你真删吗?')){
+        return;
+      }
+      axios
+        .delete(`http://localhost:3000/heroes/${id}`)
+        .then((response) => {
+            if(response.status === 200) {
+              alert('删除成功');
+              this.loadData()
+            }
+        })
+        .catch((err)=> {
+          console.log(err)
+        })
     }
   }
 }
