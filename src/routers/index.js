@@ -31,8 +31,9 @@ const router = new VueRouter({
         path: '/heroes/add',
         component: AddHero
     }, {
-        path: '/heroes/edit',
-        component: EditHero
+        path: '/heroes/edit/:id',
+        component: EditHero,
+        props: true
     }, {
         path: '*',
         component: NotFound

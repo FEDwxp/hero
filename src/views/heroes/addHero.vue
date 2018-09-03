@@ -8,7 +8,7 @@
           </div>
           <div class="form-group">
             <label for="textdenger">英雄性别</label>
-            <input v-model="formData.denger" type="text" class="form-control" id="textdenger" placeholder="英雄性别">
+            <input v-model="formData.gender" type="text" class="form-control" id="textdenger" placeholder="英雄性别">
           </div>
           <button @click.prevent="handleAdd" type="submit" class="btn btn-success">Submit</button>
         </form>
@@ -16,21 +16,21 @@
 </template>
 
 <script>
-import axios from 'axios';
+
 
 export default {
   data(){
     return {
       formData: {
         name: '',
-        denger: ''
+        gender: ''
       }
     }
   },
   methods: {
       handleAdd() {
-        axios
-        .post('http://127.0.0.1:3000/heroes',this.formData)
+        this.$http
+        .post('heroes', this.formData)
         .then((response)=> {
             if(response.status === 201) {
               this.$router.push('/heroes');

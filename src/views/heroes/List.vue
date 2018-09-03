@@ -22,7 +22,7 @@
                 <td>{{item.gender}}</td>
                 <td>
                   <!-- <a href="edit.html">edit</a> -->
-                  <router-link to="/heroes/edit">edit</router-link>
+                  <router-link :to="'/heroes/edit/'+ item.id">edit</router-link>
                   &nbsp;&nbsp;
                   <a href="javascript:" @click="handleDel(item.id)">delete</a>
                 </td>
@@ -38,21 +38,21 @@
 
 <script>
 //引入axios包
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   data(){
     return {
       list: []
-    }
+    };
   },
   mounted() {
     this.loadData();
   },
   methods: {
     loadData () {
-      axios
-        .get('http://localhost:3000/heroes')
+      this.$http
+        .get('heroes')
         .then((response) => {
           if (response.status === 200) {
             this.list = response.data;
@@ -66,8 +66,8 @@ export default {
       if(!confirm('你真删吗?')){
         return;
       }
-      axios
-        .delete(`http://localhost:3000/heroes/${id}`)
+      this.$http
+        .delete(`heroes/${id}`)
         .then((response) => {
             if(response.status === 200) {
               alert('删除成功');
